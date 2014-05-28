@@ -19,99 +19,99 @@
 
 # org.apache.cordova.media
 
-這個外掛程式提供錄製和播放設備上的音訊檔的能力。
+这个插件提供录制和播放设备上的音频文件的能力。
 
-**注**： 當前的實現並不遵循 W3C 規範的媒體捕獲和僅用於提供方便。 將來的實現將堅持以最新的 W3C 規範和可能棄用當前 Api。
+**NOTE**： 当前实现的多媒体采集并不遵循 W3C 规范，并且仅用于提供方便。 将来的实现将坚持以最新的 W3C 规范并可能弃用目前的APIs。
 
-## 安裝
+## 安装
 
     cordova plugin add org.apache.cordova.media
     
 
-## 支援的平臺
+## 支持的平台
 
-*   Android 系統
+*   Android 系统
 *   黑莓 10
 *   iOS
 *   Windows Phone 7 和 8
 *   Tizen
 *   Windows 8
 
-## Windows Phone 怪癖
+## Windows Phone 的怪异
 
-*   只有一個媒體檔案，可以播放一次。
+*   在一个时间内，只有一个媒体文件可以被播放。
 
-*   沒有嚴格限制對您的應用程式與其他媒體的對話模式。 請參見[Microsoft 文檔的詳細資訊][1].
+*   对您的应用程序如何与其他多媒体交互方式的严格限制。 请参见[Microsoft 文档的详细信息][1].
 
  [1]: http://msdn.microsoft.com/en-us/library/windowsphone/develop/hh184838(v=vs.92).aspx
 
-## 媒體
+## 媒体
 
     var media = new Media(src, mediaSuccess, [mediaError], [mediaStatus]);
     
 
-### 參數
+### 参数
 
-*   **src**： 包含音訊內容的 URI。*() DOMString*
+*   **src**： 包含音频内容的 URI。*(DOMString)*
 
-*   **mediaSuccess**： （可選） 後執行的回檔 `Media` 物件已完成當前戲劇、 記錄或停止行動。*（函數）*
+*   **mediaSuccess**： (Optional) 在`Media` 对象已完成当前的播放、录音或停止以后则执行的回调。*(Function)*
 
-*   **mediaError**： （可選） 如果錯誤發生時執行的回檔。*（函數）*
+*   **mediaError**： (Optional)如果错误发生时执行的回调。*(Function)*
 
-*   **mediaStatus**： （可選） 執行以指示狀態的更改的回檔。*（函數）*
+*   **mediaStatus**： (Optional) 执行以指示状态的更改的回调。*(Function)*
 
 ### 常量
 
-以下常量作為唯一的參數到據報告 `mediaStatus` 回檔：
+以下常量作为唯一的参数到 `mediaStatus` 回调：
 
 *   `Media.MEDIA_NONE` = 0;
 *   `Media.MEDIA_STARTING` = 1;
 *   `Media.MEDIA_RUNNING` = 2;
-*   `Media.MEDIA_PAUSED`= 3 ；
+*   `Media.MEDIA_PAUSED` = 3;
 *   `Media.MEDIA_STOPPED`= 4 ；
 
 ### 方法
 
-*   `media.getCurrentPosition`： 返回一個音訊檔內的當前位置。
+*   `media.getCurrentPosition`： 返回一个音频文件的当前播放位置。
 
-*   `media.getDuration`： 返回一個音訊檔的持續時間。
+*   `media.getDuration`： 返回一个音频文件的片长（持续时间）。
 
-*   `media.play`： 啟動或繼續播放音訊檔。
+*   `media.play`： 启动或继续播放音频文件。
 
-*   `media.pause`： 暫停播放的音訊檔。
+*   `media.pause`： 暂停正在播放的音频文件。
 
-*   `media.release`： 釋放底層作業系統的音訊資源。
+*   `media.release`： 释放底层操作系统的音频资源。
 
-*   `media.seekTo`： 在音訊檔內移動的位置。
+*   `media.seekTo`： 在音频文件内移动到指定的位置。
 
-*   `media.setVolume`： 設置音訊播放的音量。
+*   `media.setVolume`： 设置音频播放的音量。
 
-*   `media.startRecord`： 開始錄製的音訊檔。
+*   `media.startRecord`： 开始录制音频文件。
 
-*   `media.stopRecord`： 停止錄製的音訊檔。
+*   `media.stopRecord`： 停止正在录制的音频文件。
 
-*   `media.stop`： 停止播放音訊檔。
+*   `media.stop`： 停止正在播放音频文件。
 
-### 附加唯讀參數
+### 附加只读参数
 
-*   **位置**： 內音訊播放，以秒為單位的位置。
+*   **position**： 音频播放中的位置，以秒为单位。
     
-    *   不會自動更新期間播放 ；調用 `getCurrentPosition` 來更新。
+    *   不会播放时自动更新 ；调用 `getCurrentPosition` 来更新。
 
-*   **持續時間**: 媒體的持續時間以秒為單位。
+*   **duration**: 多媒体的片长（持续时间），以秒为单位。
 
 ## media.getCurrentPosition
 
-返回一個音訊檔內的當前位置。此外可以更新 `Media` 物件的 `position` 參數。
+返回一个音频文件内的当前位置。此外可以更新 `Media` 对象的 `position` 参数。
 
     media.getCurrentPosition(mediaSuccess, [mediaError]);
     
 
-### 參數
+### 参数
 
-*   **mediaSuccess**： 傳遞的當前的位置，以秒為單位的回檔。
+*   **mediaSuccess**： 当前的播放位置，以秒为单位。
 
-*   **mediaError**： （可選） 回檔執行如果發生錯誤。
+*   **mediaError**： (Optional) 如果发生错误时执行回调。
 
 ### 快速的示例
 
@@ -139,7 +139,7 @@
 
 ## media.getDuration
 
-以秒為單位返回一個音訊檔的持續時間。如果持續時間是未知的則傳回值為-1。
+以秒为单位返回一个音频文件的持续时间。如果持续时间是未知的则返回值为-1。
 
     media.getDuration();
     
@@ -167,7 +167,7 @@
 
 ## media.pause
 
-暫停播放音訊檔。
+暂停正在播放的音频文件。
 
     media.pause();
     
@@ -197,7 +197,7 @@
 
 ## media.play
 
-開始或重新開始播放音訊檔。
+开始或重新开始播放音频文件。
 
     media.play();
     
@@ -225,19 +225,19 @@
 
 ### iOS 的怪癖
 
-*   **numberOfLoops**： 傳遞到此選項 `play` 方法，以指定的次數，你想讓媒體檔案以播放，例如：
+*   **numberOfLoops**： 通过到此选项可将`play` 方法来指定你想让媒体文件播放的次数，例如：
     
         var myMedia = new Media("http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3")
         myMedia.play({ numberOfLoops: 2 })
         
 
-*   **playAudioWhenScreenIsLocked**： 通過此選項可在 `play` 方法，以指定您是否要允許播放時螢幕鎖定。 如果設置為 `true` （預設值），將忽略硬體靜音按鈕的狀態，例如：
+*   **playAudioWhenScreenIsLocked**： 通过此选项可将 `play` 方法来指定您是否要允许播放时屏幕锁定。 如果设置为 `true` （默认值），将忽略硬件静音按钮的状态，例如：
     
         var myMedia = new Media("http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3")
         myMedia.play({ playAudioWhenScreenIsLocked : false })
         
 
-*   **檔搜索順序**： 當只有一個檔的名稱或簡單路徑提供時，搜索中的 iOS `www` 目錄為該檔，然後在應用程式中的 `documents/tmp` 目錄：
+*   **order of file search**： 当只有一个文件的名称或简单路径提供时，iOS 在`www` 目录中搜索该文件，然后在应用程序中 `documents/tmp` 目录中：
     
         var myMedia = new Media("audio/beer.mp3")
         myMedia.play()  // first looks for file in www/audio/beer.mp3 then in <application>/documents/tmp/audio/beer.mp3
@@ -245,7 +245,7 @@
 
 ## media.release
 
-釋放底層作業系統的音訊資源。 這是特別重要的 android 作業系統，因為有了有限數量的 OpenCore 實例播放媒體。 應用程式應當調用 `release` 函數的任何 `Media` 不再需要的資源。
+释放底层操作系统的音频资源。 这是特别重要的 android 操作系统，因为有了有限数量的 OpenCore 实例播放媒体。 应用程序应当调用 `release` 函数的任何 `Media` 不再需要的资源。
 
     media.release();
     
@@ -263,14 +263,14 @@
 
 ## media.seekTo
 
-在音訊檔中設置的當前的位置。
+在音频文件中设置当前的播放位置。
 
     media.seekTo(milliseconds);
     
 
-### 參數
+### 参数
 
-*   **毫秒為單位）**： 要以毫秒為單位設置中，音訊的播放位置的位置。
+*   **milliseconds**： 该位置设置为音频的播放位置，以毫秒为单位。
 
 ### 快速的示例
 
@@ -286,22 +286,22 @@
 
 ### 黑莓 10 怪癖
 
-*   黑莓 OS 5 設備上不支援。
+*   BlackBerry OS 5 设备上不支持。
 
 ## media.setVolume
 
-設置音訊檔的音量。
+设置音频文件的音量。
 
     media.setVolume(volume) ；
     
 
-### 參數
+### 参数
 
-*   **體積**： 要為播放設置的卷。值必須在 0.0 到 1.0 的範圍內。
+*   **volume**： 为播放设置音量。这个值必须在 0.0 到 1.0 的范围内。
 
-### 支援的平臺
+### 支持的平台
 
-*   Android 系統
+*   Android 系统
 *   iOS
 
 ### 快速的示例
@@ -337,14 +337,14 @@
 
 ## media.startRecord
 
-開始錄製的音訊檔。
+开始录制一个音频文件。
 
     media.startRecord() ；
     
 
-### 支援的平臺
+### 支持的平台
 
-*   Android 系統
+*   Android 系统
 *   iOS
 *   Windows Phone 7 和 8
 *   Windows 8
@@ -373,26 +373,26 @@
 
 ### Android 的怪癖
 
-*   Android 設備音訊格式記錄的自我調整多速率。指定的檔應以*.amr*副檔名結尾。
+*   在自适应多速率格式中Android 设备录制音频。指定的文件应以*.amr*扩展名结尾。
 
 ### iOS 的怪癖
 
-*   iOS 只記錄到檔的類型*.wav*和返回一個錯誤如果檔副檔名不正確。
+*   iOS 仅仅录制*.wav*类型的文件并且如果文件扩展名不正确则返回一个错误。
 
-*   如果未提供的完整路徑，錄音放在應用程式的 `documents/tmp` 目錄。 這可以通過訪問 `File` API 使用 `LocalFileSystem.TEMPORARY` 。 在記錄時指定的任何子目錄中必須已經存在。
+*   如果完整路径未被提供，录音放在应用程序的 `documents/tmp` 目录。 这可以通过 `File`API 使用`LocalFileSystem.TEMPORARY`进行访问 。 在录音时间中指定的任何子目录必须已经存在。
 
-*   檔可以記錄和演奏的後面使用的檔的 URI：
+*   文件可以录音和回放使用的文件的 URI：
     
         var myMedia = new Media("documents://beer.mp3")
         
 
 ### Tizen 怪癖
 
-*   Tizen 設備上不支援。
+*   Tizen 设备上不支持。
 
 ## media.stop
 
-停止播放音訊檔。
+停止正在播放的音频文件。
 
     media.stop() ；
     
@@ -426,14 +426,14 @@
 
 ## media.stopRecord
 
-停止錄製音訊檔。
+停止正在录制的音频文件。
 
     media.stopRecord() ；
     
 
-### 支援的平臺
+### 支持的平台
 
-*   Android 系統
+*   Android 系统
 *   iOS
 *   Windows Phone 7 和 8
 *   Windows 8
@@ -468,17 +468,17 @@
 
 ### Tizen 怪癖
 
-*   Tizen 設備上不支援。
+*   Tizen 设备上不支持。
 
 ## MediaError
 
-A `MediaError` 物件返回到 `mediaError` 時出現錯誤的回呼函數。
+当出现一个错误的时候，一个`MediaError` 对象被返回到 `mediaError` 回调函数。
 
-### 屬性
+### 属性
 
-*   **代碼**： 下面列出的預定義的錯誤代碼之一。
+*   **代码**： 下面列出的预定义的错误代码之一。
 
-*   **消息**： 錯誤訊息描述該錯誤的詳細資訊。
+*   **message**：错误码对应的错误描述信息。
 
 ### 常量
 
